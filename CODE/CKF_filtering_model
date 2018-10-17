@@ -28,18 +28,8 @@ function  [Xckf,P,v,Pzminus] = CKF_filtering_model(xhat,Pminus,R,xyz,Z)
                          rjpoint(4,cpoint);
                          rjpoint(7,cpoint)]-xyz;
 
-        if vec(1,cpoint)>=0
-            dem(cpoint)=0;
-        else
-            if vec(2,cpoint)>=0
-                dem(cpoint)=1;
-            else
-                dem(cpoint)=-1;
-            end  
-        end
-
         Zt(:,cpoint)=[norm(vec(:,cpoint));...                   
-                      atan((vec(2,cpoint))/(vec(1,cpoint)))+dem(cpoint)*pi;...
+                      atan2(vec(2,cpoint), vec(1,cpoint));...
                       asin((vec(3,cpoint))/norm(vec(:,cpoint)))];
                   
 %-------------------------------Restoration-------------------------------%
