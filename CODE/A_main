@@ -194,7 +194,7 @@ for k=1:NT
         vut(:,n_o)=UCAV_v(:,k)-vx{n_o,k}; 
         vut_p=vut(:,n_o)'*LOS(:,n_o);                         % 投影相对速度
         a_p=LOS'*ax{1,k};                                   % 投影相对加速度
-        a_gen=norm(Constraint_boundary(LOS(:,n_o),a_max));  % 理论加速度上界
+        a_gen=norm(C'*Constraint_boundary(C*LOS(:,n_o),a_max)); % 加速度上界
         
         rou=vut_p^2/2/norm(-a_gen-a_p);                       % 安全距离距离
         rx(n_o,k)=rt(n_o)+ru+rou;                                 % 态势半径
